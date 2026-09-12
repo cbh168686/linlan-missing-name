@@ -47,7 +47,7 @@ function syncPhoneBadge(count){
  const notice=document.querySelector('#phone-notice');
  if(count>phoneLastCount&&state.started&&!state.ending&&!phoneElement()?.open&&!document.querySelector('#dialog')?.open){
   const person=ChatStory.available(state).find(p=>ChatStory.unread(state,p.id));
-  if(person){notice.innerHTML=`<span class="notice-app">微信</span><strong>${esc(person.name)}</strong><span>发来了一条新消息</span>`;notice.hidden=false;clearTimeout(phoneNoticeTimer);phoneNoticeTimer=setTimeout(()=>notice.hidden=true,5500);}
+  if(person){notice.dataset.phoneWho=person.id;notice.innerHTML=`<span class="notice-app">微信</span><strong>${esc(person.name)}</strong><span>发来了一条新消息</span>`;notice.hidden=false;clearTimeout(phoneNoticeTimer);phoneNoticeTimer=setTimeout(()=>notice.hidden=true,5500);}
  }
  phoneLastCount=count;
 }
