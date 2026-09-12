@@ -7,13 +7,15 @@
   <meta name="description" content="一份少了一个名字的毕业名册，一所仍在招生的学校。中文校园悬疑网页解谜游戏《缺名册》。">
   <title>缺名册 · 临澜实验中学</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23164c44'/%3E%3Cpath d='M9 7v18h14V7M12 12h8m-8 5h8m-8 5h4' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./style.css?v=093">
-  <script defer src="./data.js?v=093"></script>
-  <script defer src="./chat.js?v=093"></script>
-  <script defer src="./core.js?v=093"></script>
-  <script defer src="./chat-ui.js?v=093"></script>
-  <script defer src="./horror.js?v=093"></script>
-  <script defer src="./app.js?v=093"></script>
+  <link rel="stylesheet" href="./style.css?v=094">
+  <script defer src="./data.js?v=094"></script>
+  <script defer src="./chat.js?v=094"></script>
+  <script defer src="./case-story.js?v=094"></script>
+  <script defer src="./reading-ui.js?v=094"></script>
+  <script defer src="./core.js?v=094"></script>
+  <script defer src="./chat-ui.js?v=094"></script>
+  <script defer src="./horror.js?v=094"></script>
+  <script defer src="./app.js?v=094"></script>
 </head>
 <body>
   <a class="skip" href="#main">跳到正文</a>
@@ -22,9 +24,12 @@
   <nav class="school-nav" aria-label="网站导航"><div><a href="#home">学校首页</a><a href="#category/about">学校概况</a><a href="#category/campus">校园新闻</a><a href="#category/news">通知公告</a><a href="#category/teaching">教育教学</a><a href="#category/faculty">教师发展</a><a href="#category/students">学生天地</a><a href="#category/alumni">校友服务</a><a href="#category/admissions">招生服务</a></div></nav>
   <div id="personal-dock" hidden><span>个人资料</span><a href="#chat/zhou">个人消息</a><a href="#mirror">周栩的留存包</a><a href="#board">理事工作台副本</a><a href="#case">调查整理</a></div>
   <main id="main" tabindex="-1"></main>
-  <footer class="site-footer"><div><strong>临澜实验中学</strong><span>档案咨询时间：工作日 09:00—16:30</span></div><p>本作人物、学校与组织均属虚构。游戏内的邮件、登录与提交仅用于故事，不会联系任何真实个人或机构。</p><p class="muted">《缺名册》开发试玩版 v0.9.3 · 进度仅保存在当前浏览器</p></footer>
+  <footer class="site-footer"><div><strong>临澜实验中学</strong><span>档案咨询时间：工作日 09:00—16:30</span></div><p>本作人物、学校与组织均属虚构。游戏内的邮件、登录与提交仅用于故事，不会联系任何真实个人或机构。</p><p class="muted">《缺名册》开发试玩版 v0.9.4 · 进度仅保存在当前浏览器</p></footer>
   <dialog id="dialog" aria-labelledby="dialog-title"><div id="dialog-body"></div><form method="dialog" class="dialog-close"><button aria-label="关闭窗口">×</button></form></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
+  <button id="phone-launch" data-action="phone" aria-label="打开游戏手机" hidden><span class="phone-launch-icon" aria-hidden="true">▯</span><span>手机</span><i id="phone-badge" hidden></i></button>
+  <button id="phone-notice" data-action="phone" hidden aria-live="polite"></button>
+  <dialog id="phone-dialog" aria-label="游戏内仿微信手机"><div class="phone-frame"><div class="phone-status"><span>09:41</span><i aria-hidden="true"></i><span aria-hidden="true">▂▄▆ ▰</span></div><div id="phone-content"></div><button class="phone-home" data-phone-close aria-label="收起手机"></button></div><button class="phone-close" data-phone-close>收起手机 ×</button></dialog>
   <noscript><p class="noscript">请开启 JavaScript 后游玩。游戏不需要账号，也不调用 AI 服务。</p></noscript>
 </body>
 </html>

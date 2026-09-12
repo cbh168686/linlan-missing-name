@@ -111,3 +111,124 @@ body.cult-collage{isolation:isolate;background-color:#580808;background-image:li
 .fragment-footnote{font:11px/1.6 var(--serif);color:#9b6b62;display:block}.ritual-interruption>.glyph-fringe{padding:65px 18px 28px;opacity:.75;font-size:clamp(.75rem,2vw,1.2rem)}
 @media(max-width:600px){.damaged-fragment{padding:15px 14px}.fragment-heading{letter-spacing:.03em}.fragment-scraps p,.article .fragment-scraps p{font-size:1rem;letter-spacing:.15em}.glyph-fringe{font-size:10px;letter-spacing:.2em}.fragment-reading,.article .fragment-reading{font-size:.95rem}}
 @media(max-width:600px){.cult-eye-wall .pasted-eyes{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 0}.effigy-collage{min-height:385px;padding:30px 12%}.effigy-photo{aspect-ratio:1/1.8}.effigy-strip{font-size:12px;left:4%;padding:10px 2px}.strip-right{left:auto;right:4%}.effigy-reverse{inset:9% 11%;padding:15px 8px}.effigy-reverse strong{font-size:1.2rem;margin:18px 0}.article .effigy-reverse p{font-size:.9rem}.ritual-interruption>.pasted-eyes{grid-template-columns:repeat(3,minmax(0,1fr))}.ritual-interruption .ritual-center{padding:28px 20px}}
+
+/* v0.9.4 — shared reading in place of the final questionnaire */
+.reading-start {max-width:860px;margin:30px auto;line-height:1.95}
+.reading-start .primary,.gate-panel .button-link.primary {color:#fff}
+.archive-extra {margin-top:30px;border-top:1px solid var(--line,#d8dcd8);padding-top:18px}
+.archive-extra summary,.reading-sources summary {cursor:pointer;line-height:1.7}
+.reading-room {max-width:980px;margin:32px auto}
+.reading-progress {display:flex;gap:16px;justify-content:center;margin:0 12px 24px;color:#7a8587;font-size:14px;flex-wrap:wrap}
+.reading-progress span {padding:7px 3px;border-bottom:2px solid transparent}
+.reading-progress [aria-current] {color:#174b45;border-color:#a68a50}
+.reading-scene {max-width:790px;margin:auto;background:#fff;border-top:4px solid #aa9057;padding:48px 62px;box-shadow:0 8px 35px #20383d09}
+.reading-scene h1 {font:600 clamp(26px,4vw,36px)/1.5 Georgia,'Songti SC',serif;margin:16px 0 22px;color:#263f4b}
+.reading-intro {font-size:15px;color:#6b7a80;line-height:1.9;border-left:3px solid #d8ccb2;padding-left:17px;margin-bottom:30px}
+.reading-prose,.reading-reply {font-family:Georgia,'Songti SC','SimSun',serif;font-size:18px;line-height:2.05;color:#30424a;overflow-wrap:anywhere}
+.reading-prose p {margin:0 0 25px}
+.reading-reply {padding:10px 22px;margin:28px 0;background:#f4f4ed;border-left:3px solid #a58d54;font-size:17px}
+.reading-sources {font-size:14px;padding:15px 0;border-top:1px solid #e5e9e5;color:#5d7075}
+.reading-sources .file-list {margin:10px 0}
+.reading-sources .file-list li {padding:10px 0}
+.reading-actions {display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;margin-top:30px}
+.reading-actions .primary {margin-left:auto}
+.reading-pause {text-align:center;color:#7a8587;font-size:13px;margin:22px}
+.ending-choices {display:grid;gap:12px;margin-top:20px}
+.ending-choices button,.ending-choices a {white-space:normal;text-align:left;line-height:1.7}
+.gate-references {display:flex;gap:18px;flex-wrap:wrap;margin:22px 0}
+.return-reading {margin-top:26px}
+.chat-evidence .chat-attachment {margin:8px 0 14px;max-width:100%;box-sizing:border-box}
+.chat-evidence p {font-size:14px;line-height:1.8;margin:0 0 8px}
+@media(max-width:600px){.reading-room{margin:22px -6px}.reading-scene{padding:28px 21px}.reading-prose{font-size:17px;line-height:2}.reading-reply{padding:7px 16px;font-size:16px}.reading-progress{gap:6px;font-size:12px;justify-content:space-between}.reading-progress span{padding:5px 0}.reading-actions button{max-width:100%;white-space:normal;text-align:left}.reading-start{margin:16px 0}}
+.paper-puzzle {font-family:system-ui,-apple-system,'PingFang SC',sans-serif;border:1px solid #dbd6c9;background:#f7f5ef;padding:24px;margin:30px 0;scroll-margin-top:24px}
+.paper-puzzle h2 {font-family:Georgia,'Songti SC',serif;font-size:24px;line-height:1.5;margin:12px 0}
+.paper-puzzle .puzzle-instruction {font-size:14px;line-height:1.8;color:#5c696a;margin-bottom:18px}
+.paper-pieces {display:grid;gap:12px}
+.paper-piece {font:17px/1.85 Georgia,'Songti SC',serif;white-space:normal;text-align:left;background:#fffef8;border:1px dashed #afa48c;padding:13px 16px;box-shadow:1px 3px 0 #e5dfd1;color:#3e4541}
+.paper-piece:hover {border-color:#536e62;background:#fff}
+.assembled-note {background:#fffef8;border-left:3px solid #af9e7c;margin-top:24px;padding:14px 18px;min-height:50px;font:17px/1.9 Georgia,'Songti SC',serif}
+.assembled-note p {margin:0 0 8px}
+.assembled-note span {font:14px/1.8 system-ui;color:#78817b}
+#puzzle-feedback {font:15px/1.8 system-ui;color:#8b482e;margin:14px 0 0}
+.notice-pair {display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.notice-sheet {position:relative;padding:20px 15px;background:#fffef8;border:1px solid #ddd4c0;font-size:15px;line-height:1.9}
+.notice-sheet h3 {font-size:18px;line-height:1.6;margin:12px 0}
+.notice-sheet p {margin:8px 0 18px}
+.notice-sheet small {font-size:12px;color:#747a70}
+.notice-sheet .revision-note {font-size:13px;color:#875735}
+.notice-stamp {display:inline-block;border:2px solid #9b544b;color:#9b544b;padding:2px 10px;transform:rotate(-5deg);font-size:16px}
+.notice-sheet.retained {border-color:#688473}
+.notice-sheet.retained .notice-stamp {color:#38614b;border-color:#38614b}
+.notice-sheet.obsolete {background:#eeece6;color:#74796e}
+@media(max-width:520px){.paper-puzzle{padding:18px 13px;margin-left:-7px;margin-right:-7px}.notice-pair{grid-template-columns:1fr}.notice-sheet{padding:16px}.paper-piece{font-size:16px}.assembled-note{font-size:16px}}
+
+/* A fictional phone stays above the archive; no external messaging service. */
+#phone-launch {position:fixed;right:25px;bottom:25px;z-index:80;display:flex;align-items:center;gap:9px;padding:11px 19px;background:#243933;color:#fff;border:1px solid #829486;border-radius:28px;box-shadow:0 5px 24px #102c3133}
+#phone-launch[hidden],#phone-notice[hidden]{display:none}
+.phone-launch-icon{font-size:26px;line-height:1}
+#phone-badge{position:absolute;right:-3px;top:-4px;background:#e74646;color:#fff;border:2px solid #fff;border-radius:12px;min-width:21px;padding:0 4px;font:12px/18px system-ui;font-style:normal}
+#phone-notice{position:fixed;right:25px;bottom:89px;z-index:81;width:295px;max-width:calc(100vw - 32px);background:#f8faf8f5;border:1px solid #d9e2da;border-radius:15px;box-shadow:0 8px 28px #102a3430;padding:13px 17px;text-align:left;color:#263d37;display:grid;grid-template-columns:40px 1fr;gap:4px 10px;line-height:1.6;font-size:14px}
+#phone-notice .notice-app{background:#07c160;color:#fff;font-size:11px;border-radius:9px;grid-row:span 2;align-content:center;text-align:center}
+#phone-notice strong{font-size:14px}
+#phone-notice>span:last-child{grid-column:2}
+#phone-dialog{width:430px;max-width:calc(100vw - 20px);height:min(830px,calc(100dvh - 24px));max-height:calc(100dvh - 24px);padding:0 10px 29px;background:transparent;box-shadow:none;border:none;overflow:visible;color:#191919}
+#phone-dialog::backdrop{background:#13211b55;backdrop-filter:blur(2px)}
+.phone-frame{height:100%;display:flex;flex-direction:column;border:7px solid #292c2b;background:#ededed;border-radius:43px;overflow:hidden;box-shadow:0 18px 70px #0007,0 0 0 1px #8d9290}
+.phone-status{height:41px;flex-shrink:0;padding:9px 23px 0;display:flex;align-items:center;justify-content:space-between;background:#ededed;font:600 12px/1 system-ui}
+.phone-status i{display:block;width:83px;height:23px;border-radius:16px;background:#202222;position:absolute;left:calc(50% - 41px);top:15px}
+#phone-content{flex:1;min-height:0;overflow:hidden}
+.phone-home{width:115px;height:5px;min-height:5px;border:0;border-radius:5px;padding:0;margin:12px auto 8px;background:#262626;flex-shrink:0}
+.phone-close{display:block;margin:7px auto 0;padding:3px 12px;font-size:13px;color:#fff;border:0;background:#22392ce6;border-radius:18px}
+#phone-dialog .messenger{height:100%;min-height:0;display:block;border:0;box-shadow:none;border-radius:0;margin:0;background:#ededed}
+#phone-dialog .contacts{display:none}
+#phone-dialog.phone-contacts .contacts{display:block;height:100%;overflow:auto;background:#fff;padding:0;border:0}
+#phone-dialog.phone-contacts .conversation{display:none}
+#phone-dialog .messenger-label{padding:13px 22px;background:#ededed;border-bottom:1px solid #ddd;color:#181818;font-size:22px}
+#phone-dialog .messenger-label small{font-size:12px;color:#828282;margin-left:8px}
+#phone-dialog .contact{display:flex;align-items:center;gap:13px;border:0;border-bottom:1px solid #eee;border-radius:0;margin:0;padding:16px 20px;background:#fff;color:#161616;width:100%;text-align:left}
+#phone-dialog .contact>span:nth-child(2){flex:1;min-width:0}
+#phone-dialog .contact strong{font-size:16px;font-weight:500;display:block;line-height:1.5}
+#phone-dialog .contact small{font-size:12px;color:#8b8b8b;display:block;line-height:1.7;margin-top:4px}
+#phone-dialog .avatar{height:42px;width:42px;flex:0 0 42px;border-radius:6px;background:#697f91;color:#fff;font-size:19px;display:grid;place-items:center}
+#phone-dialog .avatar.clerk{background:#77756d}
+#phone-dialog .avatar.shen{background:#a79b82}
+#phone-dialog .avatar.liaison{background:#9c624f}
+#phone-dialog .chat-local{font-size:11px;color:#999;text-align:center;line-height:1.8;padding:18px 10px}
+#phone-dialog .conversation{height:100%;min-height:0;display:flex;flex-direction:column;background:#ededed}
+#phone-dialog .conversation>header,.lost-phone-view>header{display:flex;align-items:center;gap:8px;min-height:54px;padding:7px 14px;border-bottom:1px solid #d8d8d8;background:#ededed;flex-shrink:0}
+#phone-dialog .conversation>header>.avatar{display:none}
+#phone-dialog .conversation>header>div{flex:1;min-width:0;text-align:center}
+#phone-dialog .conversation>header h1,.lost-phone-view h1{font:600 17px/1.5 system-ui;margin:0;color:#171717}
+#phone-dialog .conversation>header small{display:block;font-size:10px;color:#888;line-height:1.5}
+#phone-dialog .phone-back,#phone-dialog .phone-minimize{background:transparent;border:0;color:#262626;padding:0 5px;font:28px/1 system-ui;min-width:32px}
+#phone-dialog .chat-log{flex:1;height:auto;min-height:0;overflow-y:auto;padding:12px 15px 22px;scroll-behavior:auto}
+#phone-dialog .chat-episode{margin-bottom:22px}
+#phone-dialog .chat-time{color:#969696;font-size:10px;text-align:center;margin:15px 0;line-height:1.7;clear:both}
+#phone-dialog .bubble{font:14px/1.85 system-ui,-apple-system,'PingFang SC',sans-serif;max-width:92%;padding:10px 13px;border:0;border-radius:5px;box-shadow:none;margin:9px 0;overflow-wrap:anywhere}
+#phone-dialog .incoming{background:#fff;color:#222;margin-right:24px}
+#phone-dialog .outgoing{background:#95ec69;color:#18231b;margin-left:auto}
+#phone-dialog .chat-choices{display:grid;gap:7px;clear:both;margin:12px 0 18px 25px}
+#phone-dialog .chat-choices button{font-size:12px;line-height:1.75;padding:8px 10px;border:1px solid #a5c49a;border-radius:6px;background:#edf7e8;color:#325335;text-align:left;white-space:normal}
+#phone-dialog .chat-attachment{padding:12px;background:#fff;border:1px solid #e0e1df;border-radius:5px;margin:10px 22px 10px 0;font-size:13px;line-height:1.7;color:#273a30;max-width:100%}
+#phone-dialog .chat-attachment span{font-size:10px;color:#90968f}
+#phone-dialog .chat-evidence{margin:12px 0;background:#e4e9e0;border:0;border-radius:6px;padding:12px}
+#phone-dialog .chat-evidence p{font-size:11px;color:#647060}
+#phone-dialog .chat-evidence .primary{background:#07b75a;color:white;border:0;font-size:12px;padding:8px 14px}
+#phone-dialog .chat-footer{display:flex;align-items:center;flex-wrap:wrap;gap:9px;border-top:1px solid #ddd;padding:9px 14px;background:#f6f6f6;flex-shrink:0}
+#phone-dialog .chat-footer a,#phone-dialog .chat-footer button{background:#fff;border:1px solid #ddd;color:#4e6354;border-radius:5px;font-size:11px;padding:6px 8px;margin:0}
+#phone-dialog .chat-footer span{width:100%;font-size:10px;color:#999}
+#phone-dialog .chat-wait{font-size:11px;color:#8f938c;text-align:center;line-height:1.9}
+.lost-phone-view{height:100%;display:flex;flex-direction:column}
+.lost-phone-view h1{flex:1;text-align:center}
+.lost-phone-log{flex:1;overflow:auto;padding:15px}
+.lost-message{display:flex;align-items:flex-start;gap:10px}
+#phone-dialog .lost-message .bubble{margin:0;max-width:calc(100% - 58px)}
+#phone-dialog .deleted-avatar{background:#c6c8c6;color:#eef0ee;font-size:27px}
+#phone-dialog .account-deleted{color:#9c4b49;background:#dfd7d3;padding:8px;margin-top:30px;border-radius:4px}
+.lost-phone-note{text-align:center;font:14px/2.1 'Songti SC',serif;color:#866c68;margin-top:36px}
+.disabled-compose{text-align:center;background:#e1e1e1;color:#9d9d9d;padding:18px 10px;font-size:13px}
+@media(max-width:520px){#phone-launch{right:14px;bottom:15px;padding:8px 14px;font-size:13px}#phone-notice{right:14px;bottom:72px}#phone-dialog{width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;padding:0 5px 28px}.phone-frame{border-width:4px;border-radius:28px}.phone-status{padding-left:23px;padding-right:23px}.phone-status i{top:12px}#phone-dialog .chat-log{padding:10px 12px}.phone-close{font-size:12px}#phone-dialog .contact{padding:14px 18px}}
+#phone-dialog .messenger-label,#phone-dialog .chat-local{display:block}
+#phone-dialog .expired-attachment{background:#f7f7f7;border:1px solid #ddd;border-radius:5px;margin:14px 23px 14px 0;padding:14px;color:#999}
+.expired-attachment strong,.expired-attachment span,.expired-attachment small{display:block;line-height:1.8}
+.expired-attachment strong{font-size:13px;font-weight:500}.expired-attachment span{font-size:12px}.expired-attachment small{font-size:10px;border-top:1px solid #e8e8e8;margin-top:8px;padding-top:8px}
