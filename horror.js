@@ -24,9 +24,20 @@ const ritualLines=[
  ['你还没有往下读','下一行已经写好了','在。','在。 在。 在。']
 ];
 function chantPlate(){return `<section class="horror-exhibit chant-exhibit" data-chant-step="0" aria-label="归灯诵读页"><div class="exhibit-bar"><span>守灯会 · 归灯前七夜</span><button class="ritual-cover-button" data-ritual-open>展开封面</button></div><div class="chant-paper">${glyphFringe()}<div class="chant-echo" aria-hidden="true">借名　留灯　候归<br>借名　留灯　候归<br>借名　留灯　候归</div><span class="chant-counter">第 一 遍</span><div class="chant-lines" aria-live="polite">${ritualLines[0].map(t=>`<p>${t}</p>`).join('')}</div><div class="chant-answer" aria-hidden="true">在</div></div>${marginalia('chant')}<div class="exhibit-controls"><span data-chant-note>末尾须停一次</span><button data-chant-next>往下读</button></div></section>`;}
+const nameSearchShown=new Set();
+let nameRevealTimer=null;
+function showNameAnomaly(){
+ if(!state.horror||!state.motion||document.querySelector('dialog[open]'))return;
+ nameSearchShown.add('name');
+ let screen=document.querySelector('.name-interruption');
+ if(!screen){screen=document.createElement('dialog');screen.className='ritual-interruption name-interruption';screen.setAttribute('aria-label','旧名录检索异常');document.body.append(screen);screen.addEventListener('close',()=>clearTimeout(nameRevealTimer));}
+ screen.innerHTML=`${pastedEyes(70)}${glyphFringe()}<button class="ritual-exit" data-name-close autofocus>关闭窗口 ×</button><div class="name-panel"><span class="name-receipt">旧名录 / 索引回执　000</span><p class="name-missing">未找到此人</p><div class="name-search-reveal" data-name-reveal hidden><p class="name-command">不要再叫<br>他的名字</p><p class="name-noise" aria-hidden="true">许□▓遥　囗□▥　归灯在在在<br>姓▓名□　已更正　□□□</p><p class="name-echo">你每叫一遍，<br>就有一双眼睛替他答应。</p></div><p class="name-status">查询记录：已更正。<br>请以现存名册为准。</p><button class="ritual-return" data-name-close>返回检索</button></div>`;
+ screen.querySelectorAll('[data-name-close]').forEach(b=>b.onclick=()=>screen.close());screen.showModal();
+ clearTimeout(nameRevealTimer);nameRevealTimer=setTimeout(()=>{if(screen.open){screen.querySelector('[data-name-reveal]').hidden=false;screen.classList.add('name-revealed');}},1300);
+}
 const ritualShown=new Set(),corruptionShown=new Set();
 let corruptionTimer=null,restoreCorruption=null;
-function clearDread(){clearTimeout(corruptionTimer);clearInterval(fragmentTimer);if(restoreCorruption)restoreCorruption();document.querySelector('.ritual-interruption')?.close();}
+function clearDread(){clearTimeout(corruptionTimer);clearInterval(fragmentTimer);if(restoreCorruption)restoreCorruption();clearTimeout(nameRevealTimer);document.querySelectorAll('.ritual-interruption').forEach(el=>el.close());}
 function showRitualCover(){
  if(!state.horror)return;
  let screen=document.querySelector('.ritual-interruption');
@@ -45,6 +56,8 @@ function corruptIndex(){
 }
 function scheduleDread(){
  const hash=location.hash;
+ if(hash.startsWith('#search')&&state.horror&&state.motion&&!nameSearchShown.has('name')){const p=new URLSearchParams(hash.split('?')[1]||'');if(p.get('scope')!=='private'&&/知遥/.test(p.get('q')||'')){corruptionTimer=setTimeout(()=>{if(location.hash===hash)showNameAnomaly();},450);return;}}
+
  if(state.horror&&state.motion&&(document.querySelector('[data-sealed-trigger]')||document.querySelector('[data-horror-scene="chant"]'))&&!ritualShown.has('chant')){ritualShown.add('chant');corruptionTimer=setTimeout(()=>{if(location.hash===hash)showRitualCover();},450);return;}
  if(!state.horror||!state.motion||!hash.startsWith('#search'))return;
  const params=new URLSearchParams(hash.split('?')[1]||''),query=params.get('q')||'';

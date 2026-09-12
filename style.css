@@ -226,3 +226,19 @@ body.cult-collage{isolation:isolate;background-color:#580808;background-image:li
 #phone-dialog .expired-attachment{background:#f7f7f7;border:1px solid #ddd;border-radius:5px;margin:14px 23px 14px 0;padding:14px;color:#999}
 .expired-attachment strong,.expired-attachment span,.expired-attachment small{display:block;line-height:1.8}
 .expired-attachment strong{font-size:13px;font-weight:500}.expired-attachment span{font-size:12px}.expired-attachment small{font-size:10px;border-top:1px solid #e8e8e8;margin-top:8px;padding-top:8px}
+
+/* The erased-name search returns one unsettling receipt per page session. */
+dialog.name-interruption{background:linear-gradient(#a10808b8,#3b0005cb),url('./assets/red-emulsion-v1.png') center/cover;padding:65px 20px 28px}
+.name-interruption>.pasted-eyes{grid-template-columns:repeat(5,minmax(0,1fr));opacity:.9;gap:32px 3px;inset:-12px -15px}
+.name-interruption .pasted-eye:nth-child(3n){transform:rotate(-11deg) scale(1.12);filter:grayscale(1) contrast(2.2)}
+.name-panel{position:relative;z-index:2;max-width:660px;min-height:calc(100dvh - 100px);margin:auto;padding:36px 28px;text-align:center;background:linear-gradient(110deg,#250207f2,#300104e0);border:1px solid #ac302e;box-shadow:0 0 80px #110001,7px 8px 0 #63090966;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.name-receipt{font:11px/1.8 ui-monospace,monospace;letter-spacing:.24em;color:#b7746b}
+.name-missing{font:700 clamp(2.1rem,6vw,4rem)/1.4 var(--serif);letter-spacing:.13em;color:#d8aaa0;margin:22px 0 12px}
+.name-command{font:800 clamp(2.5rem,7vw,5.4rem)/1.25 var(--serif);letter-spacing:.1em;color:#ed302d;margin:18px 0;text-shadow:3px 2px #660909,-2px -1px #a52127;transform:rotate(-2deg)}
+.name-noise{font:clamp(.8rem,2.5vw,1.05rem)/1.8 ui-monospace,monospace;color:#ad343e;letter-spacing:.2em;overflow-wrap:anywhere;margin:15px 0}
+.name-echo{font:1rem/1.9 var(--serif);color:#d9998c;letter-spacing:.1em;margin:12px 0}
+.name-status{color:#a46e65;font:12px/1.9 ui-monospace,monospace;margin:24px 0 0}
+.name-search-reveal{animation:name-ink .8s ease-out both}.name-interruption .ritual-return{margin-top:20px}.name-interruption .ritual-exit{position:fixed;color:#ffe1d5;background:#280206;border-color:#d16b5a;min-height:44px}
+@keyframes name-ink{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){dialog.name-interruption{padding:72px 18px 22px}.name-panel{padding:24px 15px;min-height:calc(100dvh - 94px)}.name-interruption>.pasted-eyes{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 0}.name-command{font-size:clamp(2.2rem,10vw,3.8rem)}}
+.reduced-motion .name-search-reveal{animation:none}@media(prefers-reduced-motion:reduce){.name-search-reveal{animation:none}}
