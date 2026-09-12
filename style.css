@@ -229,7 +229,7 @@ body.cult-collage{isolation:isolate;background-color:#580808;background-image:li
 
 /* The erased-name search returns one unsettling receipt per page session. */
 dialog.name-interruption{background:linear-gradient(#a10808b8,#3b0005cb),url('./assets/red-emulsion-v1.png') center/cover;padding:65px 20px 28px}
-.name-interruption>.pasted-eyes{grid-template-columns:repeat(5,minmax(0,1fr));opacity:.9;gap:32px 3px;inset:-12px -15px}
+.name-interruption>.pasted-eyes{grid-template-columns:repeat(5,minmax(0,1fr));opacity:.9;gap:32px 3px;inset:0}
 .name-interruption .pasted-eye:nth-child(3n){transform:rotate(-11deg) scale(1.12);filter:grayscale(1) contrast(2.2)}
 .name-panel{position:relative;z-index:2;max-width:660px;min-height:calc(100dvh - 100px);margin:auto;padding:36px 28px;text-align:center;background:linear-gradient(110deg,#250207f2,#300104e0);border:1px solid #ac302e;box-shadow:0 0 80px #110001,7px 8px 0 #63090966;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .name-receipt{font:11px/1.8 ui-monospace,monospace;letter-spacing:.24em;color:#b7746b}
