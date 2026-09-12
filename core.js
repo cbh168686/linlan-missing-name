@@ -49,7 +49,7 @@ function pieceNote(s,piece){
   s.readingPuzzles.note.push(piece);return null;
 }
 function chooseNotice(s,notice){
-  if(!s.vault||!s.caseRead.voice)return '先读完知遥的求助。';
+  if(!s.vault||!s.caseRead.voice)return '先读完知遥最后一夜的核对。';
   if(notice!=='revised')return '看通知的形成日期。另一张注明它替代了 6 月 10 日的安排，旧版不能继续执行。';
   s.readingPuzzles.route=true;return null;
 }
@@ -60,4 +60,68 @@ function finish(s,type){
   s.ending=type;if(!s.endings.includes(type))s.endings.push(type);return null;
 }
 const api={fresh,restore,canRead,unlock,readChapter,pieceNote,chooseNotice,finish,clean,required,chapterIds};root.GameCore=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);
+
+// Local v0.9.5: conclusions require independently selected source documents.
+(function(root){
+const g=root.GameCore,base={...g};
+const scrapSources=['loan','forum','programme','letter-liang'];
+const inquiry=()=>({scrapVersion:1,morse:false,collected:[],tiles:Array(4).fill(null)});
+g.scrapSources=Object.freeze(scrapSources);
+g.fresh=()=>({...base.fresh(),revision:95,prologueDone:false,investigation:inquiry(),phone:{delivered:[],order:[],failures:[],offlineAttempt:false,openedContacts:[],readingReturn:null},legacyComplete:false});
+g.restore=(raw,ids)=>{
+ const s=base.restore(raw,ids),modern=raw?.revision===95;
+ s.revision=95;s.prologueDone=modern?raw.prologueDone===true:!!s.started;
+ s.investigation=inquiry();s.phone={delivered:[],order:[],failures:[],offlineAttempt:modern&&raw.phone?.offlineAttempt===true};
+ s.legacyComplete=modern?raw.legacyComplete===true:!!s.caseSolved;
+ if(modern){
+  s.investigation.morse=s.mirror&&raw.investigation?.morse===true;
+  if(s.mirror&&raw.investigation?.scrapVersion===1){
+   const owned=raw.investigation.collected;
+   s.investigation.collected=Array.isArray(owned)?[...new Set(owned.filter(x=>Number.isInteger(x)&&x>=0&&x<4))]:[];
+   const used=new Set();
+   if(s.investigation.morse)s.investigation.tiles=Array.from({length:4},(_,i)=>{const x=raw.investigation.tiles?.[i];if(s.investigation.collected.includes(x)&&!used.has(x)){used.add(x);return x;}return null;});
+  }else if(s.mirror&&(s.board||(raw.investigation?.tiles?.length===6&&raw.investigation.tiles.every((v,i)=>v===i)))){
+   // A completed six-piece puzzle keeps its earned progress; unfinished layouts start the four-source hunt.
+   s.investigation={scrapVersion:1,morse:true,collected:[0,1,2,3],tiles:[0,1,2,3]};
+  }
+  s.phone.openedContacts=Array.isArray(raw.phone?.openedContacts)?[...new Set(raw.phone.openedContacts.filter(id=>root.ChatStory.people.some(p=>p.id===id)))]:[];
+ const pending=raw.phone?.readingReturn;s.phone.readingReturn=pending&&ids.includes(pending.file)&&root.ChatStory.episodes.some(e=>e.id===pending.episode&&e.who===pending.who&&e.evidence)?{who:pending.who,episode:pending.episode,file:pending.file}:null;
+ s.phone.failures=Array.isArray(raw.phone?.failures)?raw.phone.failures.filter(x=>x&&root.ChatStory.episodes.some(e=>e.id===x.id&&e.who===x.who)&&ids.includes(x.file)&&typeof x.text==='string'&&x.text.length<600).slice(-25).map(x=>({id:x.id,who:x.who,file:x.file,text:x.text})):[];
+  for(const k of ['delivered','order'])s.phone[k]=Array.isArray(raw.phone?.[k])?[...new Set(raw.phone[k].filter(x=>typeof x==='string'&&x.length<100))].slice(-1200):[];
+ }else if(s.board){s.investigation={scrapVersion:1,morse:true,collected:[0,1,2,3],tiles:[0,1,2,3]};}
+ return s;
+};
+g.hasScrap=(s,source)=>s.investigation.collected.includes(scrapSources.indexOf(source));
+g.collectScrap=(s,source)=>{
+ const piece=scrapSources.indexOf(source);
+ if(piece<0||!s.mirror||!s.visited.includes(source))return '先打开这张纸片所在的原始材料。';
+ if(!s.investigation.collected.includes(piece))s.investigation.collected.push(piece);
+ return null;
+};
+g.tilesComplete=s=>s.investigation.morse&&s.investigation.tiles.length===4&&scrapSources.every((_,i)=>s.investigation.collected.includes(i)&&s.investigation.tiles[i]===i);
+g.decode=(s,value)=>{if(!s.mirror)return '先打开周栩的留存包。';if(g.clean(value)!=='dt')return '还不匹配。斜线是两个字母之间的间隔，每组要完整对照。';s.investigation.morse=true;return null;};
+g.placeTile=(s,piece,slot)=>{
+ if(!s.mirror||!s.investigation.morse)return '先从广播索引读出两个字母。';
+ if(!Number.isInteger(piece)||piece<0||piece>3||!Number.isInteger(slot)||slot<0||slot>3)return '请选择一张纸片和一个位置。';
+ if(!s.investigation.collected.includes(piece))return '这张纸片还没保存到手机。请先回到它的来源材料。';
+ const a=s.investigation.tiles,from=a.indexOf(piece),other=a[slot];
+ if(from>=0)a[from]=other;a[slot]=piece;return null;
+};
+g.unlock=(s,gate,input={})=>{
+ if(gate==='board'&&!s.legacyComplete&&(!g.tilesComplete(s)||!s.visited.includes('night-leaf')))return '先复原广播索引对应的残页，用页上的诵读用语检索留存资料，打开归灯夹页后再回来。';
+ return base.unlock(s,gate,input);
+};
+g.verified=(s,id)=>s.legacyComplete||({name:s.chat.evidence['verify-erasure']==='yuan-order',voice:s.chat.evidence['shen-proof']==='dutylog',arrival:s.chat.evidence['clerk-route']==='arrival'})[id]===true;
+g.readChapter=(s,id)=>{
+ if(!g.verified(s,id))return {name:'先和周栩核实谁执行了撤名。',voice:'先把含原始页和封存附页的值班簿发给沈嘉宁，核对最后留言的日期与当夜交接。',arrival:'先向折页确认实际接收陈予安的车辆安排。'}[id]||'没有这一段记录。';
+ if(id==='voice')s.readingPuzzles.note=[0,1,2];
+ if(id==='arrival')s.readingPuzzles.route=true;
+ return base.readChapter(s,id);
+};
+g.finish=(s,type)=>{
+ if(type==='good'&&!g.chapterIds.every(id=>g.verified(s,id)))return '三件事还没有都核实：谁改了记录、知遥的献祭与冒名记录、实际接收安排。回到手机继续询问。';
+ return base.finish(s,type);
+};
+if(typeof module!=='undefined'&&module.exports)module.exports=g;
 })(typeof window!=='undefined'?window:globalThis);

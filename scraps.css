@@ -1,0 +1,29 @@
+/* Scanned attachments and saved phone files; no solution-position labels on pieces. */
+.scrap-attachment{margin:32px 0 12px;border-top:1px solid #dfe3e6;padding-top:16px;font:13px/1.9 -apple-system,'PingFang SC',sans-serif}
+.scrap-attachment>header{font-size:12px;color:#697481;padding-bottom:8px}
+.scrap-attachment>.scrap-scan{display:block;width:min(240px,100%);height:auto;margin:18px 0;border:1px solid #c7bba6}
+.scrap-attachment p{font-size:13px!important;line-height:1.9!important}
+.scrap-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;font:12px/1.8 system-ui}
+.archive-web .scrap-actions button:disabled{color:#82917f;background:#f5f7f3;border-color:#dce2d7;cursor:default}
+.scrap-save-status{color:#83907f;font:11px/1.8 system-ui!important}
+.saved-scrap-preview{padding:28px;color:#63707d;font:13px/1.9 system-ui}
+.saved-scrap-preview>.scrap-scan{width:min(430px,100%);height:auto;display:block;margin:0 auto 22px;border:1px solid #c7bba6}
+.phone-scraps{border-bottom:1px solid #ddd;padding-bottom:14px;margin-bottom:14px}
+.phone-scraps h2{font:500 15px/1.6 system-ui;margin:14px 18px;color:#30343a}
+.phone-scraps h2 small{margin-left:8px;color:#92999e;font:12px system-ui}
+.phone-scraps .phone-file>.scrap-scan{width:44px;height:44px;object-fit:cover;flex-shrink:0;border:1px solid #d4c8b4}
+.scrap-assemble-link{display:block;margin:10px 18px;color:#576b95;font-size:13px}
+.archive-web .tile-board{grid-template-columns:repeat(2,minmax(0,1fr));aspect-ratio:1}
+.archive-web .tile,.archive-web .tile:hover,.archive-web .tile:focus{aspect-ratio:1;padding:0;background-image:none;background-color:#f6f7f8;overflow:hidden}
+.archive-web .tile>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.archive-web .tile-tray{grid-template-columns:repeat(2,minmax(0,1fr));align-content:start}
+.scrap-empty{grid-column:1/-1;font:12px/1.8 system-ui;color:#929aa4;padding:12px;margin:0}
+.scrap-trace{border:0;margin:22px 0 0;padding:0;font:12px/1.8 system-ui}
+.scrap-trace summary{color:#697f94;cursor:pointer}
+@media(max-width:520px){.saved-scrap-preview{padding:18px}.archive-web .tile-tray{grid-template-columns:repeat(2,minmax(0,1fr))}.scrap-actions{gap:10px}.scrap-attachment>.scrap-scan{width:190px}}
+
+/* Every crop uses the same generated scan; the underlying PNG is unchanged. */
+.scrap-scan{display:block;position:relative;aspect-ratio:1;overflow:hidden;line-height:0;flex-shrink:0}
+.scrap-scan>img{display:block;position:absolute;width:200%!important;max-width:none!important;height:200%!important;left:var(--scrap-x);top:var(--scrap-y);pointer-events:none}
+.archive-web .tile>.scrap-scan{width:100%;height:100%;pointer-events:none}
+.phone-scraps .phone-file>.scrap-scan{flex:0 0 44px;max-width:44px;min-width:44px}

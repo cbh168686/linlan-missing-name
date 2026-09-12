@@ -1,0 +1,21 @@
+/* B is the only idol treatment in the game. The photograph remains the same when enlarged. */
+.idol-scene{display:block;position:relative;aspect-ratio:3/2;line-height:0;isolation:isolate;overflow:hidden}
+.idol-scene>img{display:block;width:100%;height:auto}
+.ceremony-image .ceremony-photo,.archive-web .ceremony-image .ceremony-photo:hover{display:block;width:100%;padding:0;border:0;border-radius:0;background:#241b18;cursor:zoom-in}
+.ceremony-photo:focus-visible{outline:2px solid #7f9cb5;outline-offset:3px}
+.idol-eye{position:absolute;left:50%;top:24.5%;width:2.9%;aspect-ratio:3.6;transform:translate(-50%,-50%);overflow:hidden;opacity:0;filter:sepia(.7) brightness(.82) blur(.75px);mask-image:radial-gradient(ellipse at center,#000 24%,#000a 43%,transparent 72%);transition:opacity 1.5s ease;pointer-events:none}
+.idol-socket{position:absolute;inset:0;background:url('./assets/eye-sockets.png') center 50%/133% 300%;clip-path:inset(49% 0);transition:clip-path 2.2s ease}
+.idol-pupil{position:absolute;left:50%;top:50%;width:22%;aspect-ratio:1;border-radius:50%;background:#191611 url('./assets/iris.png') center/cover;filter:brightness(.62) saturate(.35);mix-blend-mode:multiply;transform:translate(calc(-50% + var(--eye-x,0px)),calc(-50% + var(--eye-y,0px)));transition:transform .45s ease-out}
+.idol-awake .idol-eye{opacity:.95}.idol-awake .idol-socket{clip-path:inset(0);animation:idol-socket-blink 11s 5s infinite}
+.idol-still .idol-eye{opacity:.8;transition:none}.idol-still .idol-socket{clip-path:inset(0);animation:none;transition:none}.idol-still .idol-pupil{transform:translate(-50%,-50%);transition:none}
+@keyframes idol-socket-blink{0%,70%,85%,100%{clip-path:inset(0)}77%,78%{clip-path:inset(49% 0)}}
+.ceremony-photo-viewer{padding:0;width:min(560px,calc(100vw - 28px));max-height:calc(100dvh - 28px);overflow:auto;border:1px solid #4b4a47;border-radius:2px;background:#20201f;color:#c9c8c5}
+.ceremony-photo-viewer::backdrop{background:#101112d9;backdrop-filter:none}
+.ceremony-photo-viewer>header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;font:12px/1.5 system-ui;border-bottom:1px solid #42413f}
+.ceremony-photo-viewer button{border:1px solid #615e58;border-radius:2px;padding:5px 10px;background:#2b2a28;color:#d2cfca;font:12px system-ui}
+.ceremony-photo-viewer>p{font:11px/1.7 system-ui;color:#99958d;padding:0 16px;margin:12px 0}
+.idol-detail-crop{width:min(100%,440px);aspect-ratio:170/236;position:relative;overflow:hidden;margin:auto;background:#160e0a}
+.idol-detail-crop>.idol-scene{position:absolute;width:903.53%;max-width:none;left:-405.88%;top:-78.81%}
+.no-horror .ceremony-photo{display:none}
+.reduced-motion .idol-eye,.reduced-motion .idol-pupil,.reduced-motion .idol-socket{transition:none!important;animation:none!important}
+.reduced-motion .idol-pupil{transform:translate(-50%,-50%)}

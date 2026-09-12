@@ -74,9 +74,15 @@ body.index-corrupted{background:linear-gradient(#e40019b8,#920011b8),url('./asse
 
 /* Repeated photocopied eyes are paper fragments, not an approaching face. */
 .pasted-eyes{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-content:start;gap:20px 0;overflow:hidden;pointer-events:none}
-.pasted-eye{display:block;position:relative;aspect-ratio:4.5/1;background:url('./assets/eye-sockets.png') center var(--eye-row)/133% 300%;filter:grayscale(1) contrast(1.8);transform:rotate(var(--eye-tilt));clip-path:polygon(0 20%,15% 8%,40% 0,75% 6%,100% 24%,98% 85%,62% 100%,22% 90%,0 77%)}
+.pasted-eye{display:block;position:relative;aspect-ratio:4.5/1;filter:grayscale(1) contrast(1.8);transform:rotate(var(--eye-tilt));clip-path:polygon(0 20%,15% 8%,40% 0,75% 6%,100% 24%,98% 85%,62% 100%,22% 90%,0 77%)}
+.pasted-eye-open{display:block;position:absolute;inset:0;background:url('./assets/eye-sockets.png') center var(--eye-row)/133% 300%;transform-origin:50% 50%;animation:pasted-eye-blink var(--eye-cycle,8s) var(--eye-delay,0s) infinite;}
 .pasted-eye b{position:absolute;left:33%;top:17%;width:34%;height:67%;border-radius:50%;overflow:hidden}
-.pasted-eye img{position:absolute;left:20%;top:50%;width:57%;transform:translateY(-50%);mix-blend-mode:multiply;filter:brightness(.45)}
+.pasted-eye img{position:absolute;left:50%;top:50%;width:57%;transform:translate(calc(-50% + var(--pupil-x,0px)),calc(-50% + var(--pupil-y,0px)));mix-blend-mode:multiply;filter:brightness(.45);transition:transform .16s ease-out;pointer-events:none}
+@keyframes pasted-eye-blink{0%,90%,97%,100%{transform:scaleY(1);animation-timing-function:ease-in}92%{transform:scaleY(.06);animation-timing-function:ease-out}93%{transform:scaleY(.06);animation-timing-function:ease-out}}
+.reduced-motion .pasted-eye-open,.no-horror .pasted-eye-open{animation:none}
+.reduced-motion .pasted-eye img,.no-horror .pasted-eye img{transform:translate(-50%,-50%);transition:none}
+.eyes-paused .pasted-eye-open{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.pasted-eye-open{animation:none}.pasted-eye img{transform:translate(-50%,-50%);transition:none}}
 .pasted-eye:nth-child(7n+2){opacity:.55;transform:rotate(var(--eye-tilt)) scaleX(-1)}
 .cult-eye-wall{position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.46;background:#690909}
 .cult-eye-wall .pasted-eyes{inset:-20px -40px;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px 0}
@@ -242,3 +248,35 @@ dialog.name-interruption{background:linear-gradient(#a10808b8,#3b0005cb),url('./
 @keyframes name-ink{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:600px){dialog.name-interruption{padding:72px 18px 22px}.name-panel{padding:24px 15px;min-height:calc(100dvh - 94px)}.name-interruption>.pasted-eyes{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 0}.name-command{font-size:clamp(2.2rem,10vw,3.8rem)}}
 .reduced-motion .name-search-reveal{animation:none}@media(prefers-reduced-motion:reduce){.name-search-reveal{animation:none}}
+
+/* Search interruption keeps school layout while text, portrait slots and pale surfaces change. */
+.son-echo-exit{position:fixed;right:20px;top:62px;z-index:90;background:#fff;color:#234b6b;border:1px solid #aab8c4;padding:8px 12px;font-size:13px;box-shadow:0 2px 8px #0002}
+.son-echo-active .service-links> a>span{font-size:12px;line-height:1.4}
+.clue-underline{text-decoration:underline;text-decoration-color:currentColor;text-decoration-thickness:1px;text-underline-offset:3px}
+
+.son-echo-active .school-header{background:#650008}
+.son-echo-active :is(.gamebar,.school-header,.school-nav,#personal-dock,#main,.site-footer,#phone-launch),.son-echo-active :is(.gamebar,.school-header,.school-nav,#personal-dock,#main,.site-footer,#phone-launch) *{color:#df1020}
+.son-echo-active :is(.gamebar,.school-header,.school-nav,.photo-caption,#phone-launch) *,.son-echo-active #phone-launch{color:#ff3442}
+.son-echo-active #header-query,.son-echo-active #header-query::placeholder{color:#df1020;opacity:1}
+.son-echo-active #phone-notice{visibility:hidden}
+
+.son-echo-char{opacity:0}
+.son-echo-char.echo-ready{opacity:1}
+
+/* Character spans inherit typography without picking up the website's label/badge styles. */
+body.son-echo-active .son-echo-copy,body.son-echo-active .son-echo-char{display:inline;font:inherit;letter-spacing:inherit;line-height:inherit;padding:0;margin:0;border:0;background:transparent;border-radius:0;box-shadow:none;text-transform:none}
+
+/* The school layout stays intact while its pale surfaces slowly darken. */
+body.son-echo-active,.son-echo-active #main,.son-echo-active .home-content,.son-echo-active .site-footer{background:var(--son-page-color,#f5f7f8)}
+.son-echo-active #personal-dock,.son-echo-active .alumni-strip,.son-echo-active .date-square,.son-echo-active .service-links>a,.son-echo-active .home-bottom{background:var(--son-panel-color,#edf1f4)}
+.son-echo-active #header-query{background:var(--son-field-color,#fff)}
+.son-echo-active :is(#personal-dock,#main,.site-footer) *,.son-echo-active #header-query{color:var(--son-text-color,#df1020)}
+
+/* The selected B portrait fills the existing photo slots; the full hall stays out of view. */
+.son-idol-photo{display:block;position:relative;width:100%;height:var(--son-photo-height,205px);overflow:hidden;background:#0e0805}
+.photo-slide>.son-idol-photo{position:absolute;inset:0;height:100%}
+.school-features>section>a>.son-idol-photo{margin-bottom:20px}
+.son-idol-portrait{display:block;position:absolute;height:100%;width:auto;aspect-ratio:170/236;left:50%;top:0;transform:translateX(-50%);overflow:hidden;opacity:1;transition:opacity .65s ease-out}
+.son-photo-pending>.son-idol-portrait{opacity:0}
+.son-idol-portrait>.idol-scene{position:absolute;width:903.53%;max-width:none;left:-405.88%;top:-78.81%}
+.son-idol-photo .idol-scene>img{display:block;width:100%;height:auto;max-width:none;margin:0}
