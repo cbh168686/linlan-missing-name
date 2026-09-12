@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="title desc">
+  <title id="title">栖汀实验中学校徽</title>
+  <desc id="desc">由书页、水纹和圆环组成的虚构学校校徽</desc>
+  <defs>
+    <path id="topArc" d="M 28,102 A 72,72 0 0,1 172,102"/>
+    <path id="bottomArc" d="M 39,123 A 66,66 0 0,0 161,123"/>
+  </defs>
+  <circle cx="100" cy="100" r="95" fill="#0b416f"/>
+  <circle cx="100" cy="100" r="84" fill="#fff" stroke="#d2aa53" stroke-width="3"/>
+  <circle cx="100" cy="100" r="60" fill="#0b416f"/>
+  <text fill="#fff" font-size="17" font-family="STSong, SimSun, serif" letter-spacing="3">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">栖汀实验中学</textPath>
+  </text>
+  <text fill="#fff" font-size="12" font-family="Arial, sans-serif" letter-spacing="3">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">QITING SCHOOL · 1998</textPath>
+  </text>
+  <path d="M56 82c16-7 31-5 44 7v38c-12-10-27-13-44-7V82Z" fill="#fff"/>
+  <path d="M144 82c-16-7-31-5-44 7v38c12-10 27-13 44-7V82Z" fill="#fff"/>
+  <path d="M64 134c19-8 32-5 36 0 4-5 17-8 36 0-18-2-29 1-36 8-7-7-18-10-36-8Z" fill="#d2aa53"/>
+  <path d="M70 151c16-5 44-5 60 0M78 160c13-4 31-4 44 0" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+</svg>
